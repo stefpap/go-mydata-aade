@@ -92,23 +92,11 @@ func NewClient(config *Config) (*Client, error) {
 // RequestTransmittedDocs returns the invoices,cancellations etc., issued by the entity associated to the
 // authenticated user.
 // If the api returns an error, or it is not accessible then the method returns an error with descriptive message.
-func (c Client) RequestTransmittedDocs(mark string, nextPartitionKey, nextRowKey *string) (*models.RequestedDoc, error) {
+func (c Client) RequestTransmittedDocs(params api.GetRequesttransmitteddocsParams) (*models.RequestedDoc, error) {
 	const errPrefix = "getting transmitted docs"
 
 	ctx, cancel := context.WithTimeout(context.Background(), c.timeout)
 	defer cancel()
-
-	params := api.GetRequesttransmitteddocsParams{
-		Mark: api.GetRequesttransmitteddocsParamsMark(mark),
-	}
-	if nextPartitionKey != nil {
-		partitionKey := api.GetRequesttransmitteddocsParamsNextPartitionKey(*nextPartitionKey)
-		params.NextPartitionKey = &partitionKey
-	}
-	if nextRowKey != nil {
-		rowKey := api.GetRequesttransmitteddocsParamsNextRowKey(*nextRowKey)
-		params.NextRowKey = &rowKey
-	}
 
 	resp, err := c.myDataClient.GetRequesttransmitteddocs(ctx, &params)
 	if err != nil {
