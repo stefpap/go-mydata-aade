@@ -97,6 +97,7 @@ type InvoiceDetails struct {
 	OtherTaxesPercentCategory *uint                         `xml:"otherTaxesPercentCategory"`
 	OtherTaxesAmount          *float64                      `xml:"otherTaxesAmount"`
 	DeductionsAmount          *float64                      `xml:"deductionsAmount"`
+	LineComments              string                        `xml:"lineComments"`
 	IncomeClassification      []*IncomeClassificationType   `xml:"incomeClassification"`
 	ExpensesClassification    []*ExpensesClassificationType `xml:"expensesClassification"`
 }
