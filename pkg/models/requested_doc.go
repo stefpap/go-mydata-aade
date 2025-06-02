@@ -54,7 +54,7 @@ type InvoiceHeader struct {
 	Currency             string   `xml:"currency"`
 	ExchangeRate         *float64 `xml:"exchangeRate"`
 	SelfPricing          *bool    `xml:"selfPricing"`
-	CorrelatedInvoices   *uint    `xml:"correlatedInvoices"`
+	CorrelatedInvoices   *uint64  `xml:"correlatedInvoices"`
 	DispatchDate         *string  `xml:"dispatchDate"`
 	DispatchTime         *string  `xml:"dispatchTime"`
 	VehicleNumber        *string  `xml:"vehicleNumber"`
